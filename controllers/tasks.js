@@ -10,25 +10,39 @@ router.get('/',(req, res)=>{
         if(!error){
             res.json(foundTasks)
         }else{
-            res.send({msg: error.message})
+            console.log('Error fetching task:', error)
         }
     })
 })
 // New : An empty form for a new thing - GET /tasks/new
 
 // Delete : Get rid of this particular thing! - DELETE /tasks/:id
+router.delete('/:id',(req, res)=>{
+    Tasks.findByIdAndRemove(req.params.id, (error, deletedTask))
+    if(!error){
+        res.json(deletedTask)
+    }else{
+        console.log('Error fetching task:', error)
+    }
+})
 // Update : Update this specific thing with this updated form - PUT /tasks/:id
+router.put('/:id',(req, res)=>{
+    Tasks.findByIdAndUpdate(req.params.id, req.body, (error, updatedTask)=>{
+        res.json(updatedTask)
+    })
+})
 // Create : Make a new thing with this filled out form - POST /tasks
 router.post('/',(req, res)=>{
     Tasks.create(req.body,(error, createTasks)=>{
         if(!error){
             res.json(createTasks)
         }else{
-            res.send({msg: error.message})
+            console.log('Error fetching task:', error)
         }
     })
 })
 // Edit : A prefilled form to update a specific thing - GET /tasks/:id/edit
+
 // Show : Show me this one thing! - GET /tasks/:id (edited) 
 router.get('/:month',(req, res)=>{
     
@@ -36,7 +50,7 @@ router.get('/:month',(req, res)=>{
         if(!error){
             res.json(foundTasks)
         }else{
-            res.send({msg: error.message})
+            console.log('Error fetching task:', error)
         }
     })
 })
