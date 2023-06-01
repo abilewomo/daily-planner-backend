@@ -4,8 +4,8 @@ const Tasks = require('../models/tasks')
 
 
 // Index : Show all the things! - GET /tasks
-router.get('/',(req, res)=>{
-    Tasks.find({},(error, foundTasks)=>{
+router.get('/:date',(req, res)=>{
+    Tasks.find({taskDate: req.params.date},(error, foundTasks)=>{
         if(!error){
             res.json(foundTasks)
         }else{
@@ -29,3 +29,4 @@ router.post('/',(req, res)=>{
 })
 // Edit : A prefilled form to update a specific thing - GET /tasks/:id/edit
 // Show : Show me this one thing! - GET /tasks/:id (edited) 
+module.exports = router
