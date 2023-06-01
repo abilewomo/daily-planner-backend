@@ -44,6 +44,16 @@ router.post('/',(req, res)=>{
 // Edit : A prefilled form to update a specific thing - GET /tasks/:id/edit
 
 // Show : Show me this one thing! - GET /tasks/:id (edited) 
+router.get('/task/:id',(req, res)=>{
+    
+    Tasks.findById(req.params.id,(error, foundTasks)=>{
+        if(!error){
+            res.json(foundTasks)
+        }else{
+            console.log('Error fetching task:', error)
+        }
+    })
+})
 router.get('/:month',(req, res)=>{
     
     Tasks.find({taskMonth: req.params.month},(error, foundTasks)=>{
