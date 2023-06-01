@@ -30,9 +30,9 @@ router.post('/',(req, res)=>{
 })
 // Edit : A prefilled form to update a specific thing - GET /tasks/:id/edit
 // Show : Show me this one thing! - GET /tasks/:id (edited) 
-router.get('/:date',(req, res)=>{
+router.get('/:month',(req, res)=>{
     
-    Tasks.find({taskDate: req.params.date},(error, foundTasks)=>{
+    Tasks.find({taskMonth: req.params.month},(error, foundTasks)=>{
         if(!error){
             res.json(foundTasks)
         }else{
