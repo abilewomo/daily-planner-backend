@@ -50,7 +50,7 @@ router.get('/task/:id',(req, res)=>{
         if(!error){
             res.json(foundTasks)
         }else{
-            console.log('Error fetching task:', error)
+            console.log('Error fetching this task:', error)
         }
     })
 })
